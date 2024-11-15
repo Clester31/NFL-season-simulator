@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import GearSelector from './GearSelector'; // Import the new GearSelector component
 
-export default function UniformSelector({ team }: { team: string }) {
+export default function UniformSelector({ team, location }: { team: string, location: string }) {
     const [helmet, setHelmet] = useState<string[]>([]);
     const [jersey, setJersey] = useState<string[]>([]);
     const [pants, setPants] = useState<string[]>([]);
@@ -19,10 +19,10 @@ export default function UniformSelector({ team }: { team: string }) {
 
     return (
         <div className="p-2">
-            <GearSelector gear="Helmet" images={helmet} hideButtons={hideButtons} />
-            <GearSelector gear="Jersey" images={jersey} hideButtons={hideButtons} />
-            <GearSelector gear="Pants" images={pants} hideButtons={hideButtons} />
-            <GearSelector gear="Socks" images={socks} hideButtons={hideButtons} />
+            <GearSelector gear="Helmet" images={helmet} hideButtons={hideButtons} location={"home"} />
+            <GearSelector gear="Jersey" images={jersey} hideButtons={hideButtons} location={"home"} />
+            <GearSelector gear="Pants" images={pants} hideButtons={hideButtons} location={"home"} />
+            <GearSelector gear="Socks" images={socks} hideButtons={hideButtons} location={"home"}/>
             <button onClick={() => setHideButtons(!hideButtons)}>Hide buttons</button>
         </div>
     );
@@ -34,7 +34,7 @@ async function loadImages({ team, gear, setImageArray }: {
     setImageArray: React.Dispatch<React.SetStateAction<string[]>>
 }) {
     const updateUniforms = async () => {
-        for (let i = 1; i <= 4; i++) {
+        for (let i = 1; i <= 5; i++) {
             const url = `uniforms/${team}/${gear}/${team}_${gear.toUpperCase()}_${i}.png`;
             // Check if the image URL is valid
             const img = new Image();

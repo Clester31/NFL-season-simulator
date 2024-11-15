@@ -6,10 +6,11 @@ interface GearSelectorProps {
     gear: string;
     images: string[];
     hideButtons: boolean;
+    location: string;
 }
 
-const GearSelector: React.FC<GearSelectorProps> = ({ gear, images, hideButtons }) => {
-    const [index, setIndex] = useState<number>(0);
+const GearSelector: React.FC<GearSelectorProps> = ({ gear, images, hideButtons, location }) => {
+    const [index, setIndex] = useState<number>(location === 'home' ? 0 : 1);
     const buttonStyle = 'p-2 bg-gray-300 w-24 h-16 rounded-xl text-black text-lg mx-4';
     return (
         <div className="flex flex-row">
